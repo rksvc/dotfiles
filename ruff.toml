@@ -1,0 +1,9 @@
+line-length = 110
+
+[format]
+indent-style = "tab"
+line-ending = "lf"
+quote-style = "single"
+
+[lint]
+extend-select = ["I"]

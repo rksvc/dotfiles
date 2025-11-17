@@ -1,0 +1,12 @@
+[flavor]
+dark = "dracula"
+
+[mgr]
+preview_hovered = { hidden = true }
+
+[icon]
+globs = []
+dirs  = []
+files = []
+exts  = []
+conds = []

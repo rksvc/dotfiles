@@ -1,0 +1,8 @@
+[mgr]
+linemode = "size"
+
+[opener]
+open = [ { run = 'bat --wrap=never --paging=always "$1"', block = true, desc = "Open", for = "linux" } ]
+
+[open]
+rules = [ { name = "*", use = [ "open" ] } ]
