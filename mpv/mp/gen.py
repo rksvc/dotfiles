@@ -1,3 +1,12 @@
+#! /usr/bin/env -S uv run
+# /// script
+# requires-python = ">=3.13"
+# dependencies = [
+#   "docutils~=0.21.2",
+#   "mdformat~=0.7.22",
+# ]
+# ///
+
 import os
 import re
 import sys
