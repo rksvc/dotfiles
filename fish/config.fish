@@ -4,6 +4,9 @@ set -gx fish_prompt_pwd_dir_length 0
 set -gx TERM xterm-256color
 set -gx COLORTERM truecolor
 
+set -gx RUSTUP_UPDATE_ROOT https://rsproxy.cn/rustup
+set -gx RUSTUP_DIST_SERVER https://rsproxy.cn
+
 set -gx PNPM_HOME ~/.local/share/pnpm
 
 alias ls='ls -h --classify --color=auto'
