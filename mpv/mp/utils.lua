@@ -24,6 +24,7 @@ function utils.getcwd() end
 ---   and `..` entries.
 ---
 --- On error, `nil, error` is returned.
+---@param filter?
 function utils.readdir(path, filter) end
 
 --- Stats the given path for information and returns a table with the following
@@ -106,6 +107,7 @@ function utils.get_env_list() end
 --- non-whitespace text is tolerated by the function, and the trailing text is
 --- returned as 3rd return value. (The 3rd return value is always there, but with
 --- `trail` set, no error is raised.)
+---@param trail?
 function utils.parse_json(str, trail) end
 
 --- Format the given Lua table (or value) as a JSON string and return it. On error,

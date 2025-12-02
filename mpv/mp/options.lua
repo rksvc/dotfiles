@@ -22,6 +22,8 @@ local options = {}
 --- value in the config file). `table` entries are only written for option values
 --- whose values effectively change (this is important if the script changes `table`
 --- entries independently).
+---@param identifier?
+---@param on_update?
 function options.read_options(table, identifier, on_update) end
 
 return options

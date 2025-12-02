@@ -53,6 +53,7 @@ function mp.commandv(arg1, arg2, ...) end
 --- Returns a result table on success (usually empty), or `def, error` on error.
 --- `def` is the second parameter provided to the function, and is nil if it's
 --- missing.
+---@param def?
 function mp.command_native(table, def) end
 
 --- Like `mp.command_native()`, but the command is ran asynchronously (as far as
@@ -72,6 +73,7 @@ function mp.command_native(table, def) end
 --- `fn` is called indicating failure, using the same error value.
 ---
 --- `fn` is always called asynchronously, even if the command failed to start.
+---@param fn?
 function mp.command_native_async(table, fn) end
 
 --- Abort a `mp.command_native_async` call. The argument is the return value of that
@@ -95,6 +97,7 @@ function mp.del_property(name) end
 ---
 --- Returns the string on success, or `def, error` on error. `def` is the second
 --- parameter provided to the function, and is nil if it's missing.
+---@param def?
 function mp.get_property(name, def) end
 
 --- Similar to `mp.get_property`, but return the property value formatted for OSD.
@@ -104,11 +107,13 @@ function mp.get_property(name, def) end
 --- parameter provided to the function, and is an empty string if it's missing.
 --- Unlike `get_property()`, assigning the return value to a variable will always
 --- result in a string.
+---@param def?
 function mp.get_property_osd(name, def) end
 
 --- Similar to `mp.get_property`, but return the property value as Boolean.
 ---
 --- Returns a Boolean on success, or `def, error` on error.
+---@param def?
 function mp.get_property_bool(name, def) end
 
 --- Similar to `mp.get_property`, but return the property value as number.
@@ -118,6 +123,7 @@ function mp.get_property_bool(name, def) end
 --- usually convert integer property values to float.
 ---
 --- Returns a number on success, or `def, error` on error.
+---@param def?
 function mp.get_property_number(name, def) end
 
 --- Similar to `mp.get_property`, but return the property value using the best Lua
@@ -126,6 +132,7 @@ function mp.get_property_number(name, def) end
 ---
 --- Returns a value on success, or `def, error` on error. Note that `nil` might be a
 --- possible, valid value too in some corner cases.
+---@param def?
 function mp.get_property_native(name, def) end
 
 --- Set the given property to the given string value. See `mp.get_property` and
@@ -259,6 +266,8 @@ function mp.get_time() end
 --- ```text
 --- y script-binding fooscript/something
 --- ```
+---@param fn?
+---@param flags?
 function mp.add_key_binding(key, name, fn, flags) end
 
 --- This works almost the same as `mp.add_key_binding`, but registers the key
@@ -338,6 +347,7 @@ function mp.unobserve_property(fn) end
 --- This is a one-shot timer: it will be removed when it's fired.
 ---
 --- Returns a timer object. See `mp.add_periodic_timer` for details.
+---@param disabled?
 function mp.add_timeout(seconds, fn, disabled) end
 
 --- Call the given function periodically. This is like `mp.add_timeout`, but the
@@ -382,6 +392,7 @@ function mp.add_timeout(seconds, fn, disabled) end
 ---     end
 --- end)
 --- ```
+---@param disabled?
 function mp.add_periodic_timer(seconds, fn, disabled) end
 
 --- Return a setting from the `--script-opts` option. It's up to the user and the
@@ -404,6 +415,7 @@ function mp.get_script_directory() end
 
 --- Show an OSD message on the screen. `duration` is in seconds, and is optional
 --- (uses `--osd-duration` by default).
+---@param duration?
 function mp.osd_message(text, duration) end
 
 --- Calls `mpv_get_wakeup_pipe()` and returns the read end of the wakeup pipe. This
@@ -426,6 +438,7 @@ function mp.get_next_timeout() end
 --- strongly recommended to use `mp.get_next_timeout()` and `mp.get_wakeup_pipe()`
 --- if you're interested in properly working notification of new events and working
 --- timers.
+---@param allow_wait?
 function mp.dispatch_events(allow_wait) end
 
 --- Register an event loop idle handler. Idle handlers are called before the script

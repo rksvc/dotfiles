@@ -155,7 +155,7 @@ document = docutils.utils.new_document('lua.rst', settings=settings)
 parser.parse(text, document)
 # document.walkabout(Visitor(show_text=True, document=document))
 
-modules: dict[str, dict[str, str]] = {}
+modules: dict[str, dict[str, tuple[str, list[str]]]] = {}
 for definition_list in document.findall(
 	lambda n: isinstance(n, nodes.definition_list) and isinstance(n.parent, nodes.section)
 ):
@@ -171,6 +171,9 @@ for definition_list in document.findall(
 		comment = mdformat.text(translator.output, options={'wrap': 80})
 
 		for literal in term.findall(lambda n: isinstance(n, nodes.literal)):
+			opt_params = []
+			if m := re.search(r'\[.+\]', literal.astext()):
+				opt_params = re.findall(r'\w+', m[0])
 			fn = literal.astext().replace('[', '').replace(']', '')
 			fn = re.sub(r'\|\w+', '', fn)
 			fn = re.sub(r'\s*,\s*', ', ', fn)
@@ -179,7 +182,7 @@ for definition_list in document.findall(
 				comps = fn.split('.', 1)
 				if len(comps) > 1:
 					module = comps[0]
-			modules.setdefault(module, {})[fn] = comment
+			modules.setdefault(module, {})[fn] = (comment, opt_params)
 
 os.makedirs(outdir, exist_ok=True)
 for module, functions in modules.items():
@@ -190,8 +193,10 @@ for module, functions in modules.items():
 			if module == 'mp'
 			else f'--- @meta mp.{module}\n\nlocal {module} = {{}}\n\n'
 		)
-		for fn, comment in functions.items():
+		for fn, (comment, opt_params) in functions.items():
 			for line in comment.splitlines():
 				file.write(f'--- {line}\n' if line else '---\n')
+			for param in opt_params:
+				file.write(f'---@param {param}?\n')
 			file.write(f'function {fn} end\n\n')
 		file.write(f'return {module}\n')
