@@ -26,7 +26,3 @@ alias aria2c='aria2c --max-connection-per-server=16 --continue'
 alias jrnl-vacuum='sudo journalctl --flush --rotate --vacuum-time'
 alias cpv='rsync -r -h --perms --owner --group --partial --progress'
 alias unzip-zh='unzip -O GB18030'
-
-function sync_history --on-event fish_preexec
-    history merge
-end
