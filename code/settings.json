@@ -12,6 +12,7 @@
 	},
 	"editor.unicodeHighlight.includeStrings": false,
 	"diffEditor.ignoreTrimWhitespace": false,
+	"diffEditor.renderSideBySide": false,
 	"workbench.enableExperiments": false,
 	"extensions.ignoreRecommendations": true,
 	"security.workspace.trust.enabled": false,
@@ -24,6 +25,7 @@
 	"rust-analyzer.check.command": "clippy",
 	"biome.requireConfiguration": true,
 	"chat.commandCenter.enabled": false,
+	"workbench.secondarySideBar.defaultVisibility": "hidden",
 	"svg.preview.mode": "svg",
 	"python.analysis.typeCheckingMode": "standard",
 	"Lua.diagnostics.enable": false
