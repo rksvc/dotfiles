@@ -1,18 +1,13 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.3.10/schema.json",
-  "formatter": {
-    "lineWidth": 120
-  },
-  "javascript": {
-    "formatter": {
-      "quoteStyle": "single",
-      "semicolons": "asNeeded",
-      "arrowParentheses": "asNeeded"
-    }
-  },
-  "json": {
-    "formatter": {
-      "indentStyle": "space"
-    }
-  }
+	"$schema": "https://biomejs.dev/schemas/2.3.10/schema.json",
+	"formatter": {
+		"lineWidth": 120
+	},
+	"javascript": {
+		"formatter": {
+			"quoteStyle": "single",
+			"semicolons": "asNeeded",
+			"arrowParentheses": "asNeeded"
+		}
+	}
 }
