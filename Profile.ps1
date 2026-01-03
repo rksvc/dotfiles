@@ -37,7 +37,7 @@ Function Rename-Subs {
         throw "The number of subtitle files doesn't match the number of video files."
     }
     for ($i = 0; $i -lt $Subs.Count; $i++) {
-        Rename-Item -LiteralPath $Subs[$i].Name -NewName "$($Videos[$i].Basename)$($Subs[$i].Extension)"
+        Rename-Item -LiteralPath $Subs[$i].FullName -NewName "$($Videos[$i].Basename)$($Subs[$i].Extension)"
     }
 }
 
