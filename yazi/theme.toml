@@ -1,12 +1,12 @@
 [flavor]
 dark = "dracula"
 
-[mgr]
-preview_hovered = { hidden = true }
+[indicator]
+preview = { hidden = true }
 
 [icon]
 globs = []
-dirs  = []
+dirs = []
 files = []
-exts  = []
+exts = []
 conds = []
