@@ -41,12 +41,6 @@ Function Rename-Subs {
     }
 }
 
-Function Pal {
-    $Backup = "$HOME\ecloud\games\Palworld.zip"
-    Remove-Item $Backup
-    7z a -xr!backup $Backup D:\Sandbox\Palworld\user\current\AppData\Local\Pal\Saved\SaveGames\*
-}
-
 Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
 Set-PSReadLineKeyHandler -Key Alt+Backspace -Function ShellBackwardKillWord
 Set-PSReadLineKeyHandler -Key Ctrl+RightArrow -Function ForwardWord
