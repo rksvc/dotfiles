@@ -23,6 +23,12 @@ local function format_item(title, value)
     return item
 end
 
+local logs = {}
+mp.enable_messages('warn')
+mp.register_event('log-message', function(event)
+    table.insert(logs, event)
+end)
+
 mp.register_script_message('show', function()
     local menu = {
         title = 'Debug',
@@ -39,5 +45,19 @@ mp.register_script_message('show', function()
             items = items
         })
     end
+
+    local items = {}
+    for _, log in ipairs(logs) do
+        table.insert(items, {
+            title = '[' .. log.prefix .. '] ' .. log.text,
+            hint = log.level,
+            value = { 'set', 'clipboard/text', log.text },
+            keep_open = true
+        })
+    end
+    table.insert(menu.items, {
+        title = 'Logs [' .. #items .. ']',
+        items = items
+    })
     mp.commandv('script-message-to', 'uosc', 'open-menu', utils.format_json(menu))
 end)
