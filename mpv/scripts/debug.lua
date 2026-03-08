@@ -2,7 +2,7 @@ local utils = require('mp.utils')
 
 local function format_item(title, value)
     local item = { title = title, keep_open = true }
-    if type(value) == "table" then
+    if type(value) == 'table' then
         item.items = {}
         for i, v in ipairs(value) do
             table.insert(item.items, format_item('#' .. (i - 1), v))
@@ -15,7 +15,7 @@ local function format_item(title, value)
         item.title = item.title .. ' [' .. #item.items .. ']'
     else
         item.hint = utils.format_json(value)
-        if type(value) ~= "string" then
+        if type(value) ~= 'string' then
             value = item.hint
         end
         item.value = { 'set', 'clipboard/text', value }
