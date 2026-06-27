@@ -1,7 +1,1 @@
-{
-  "arrowParens": "avoid",
-  "ignorePatterns": ["code/settings.json"],
-  "objectWrap": "collapse",
-  "semi": false,
-  "singleQuote": true
-}
+{ "arrowParens": "avoid", "objectWrap": "collapse", "semi": false, "singleQuote": true }
