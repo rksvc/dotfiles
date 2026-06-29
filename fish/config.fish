@@ -20,6 +20,7 @@ alias free='free -h'
 alias pgrep='pgrep --list-full'
 alias tree='tree --gitignore --metafirst --du -puhDF'
 alias bat='bat --wrap=never'
+alias tokei='tokei --hidden --compact --sort=lines'
 alias su='su --shell=$SHELL'
 alias aria2c='aria2c --max-connection-per-server=16 --continue'
 
