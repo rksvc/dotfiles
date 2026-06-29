@@ -11,9 +11,6 @@ switch (location.host) {
     location.host = 'xcancel.com'
     break
   case 'www.reddit.com':
-    location.host = 'redlib.perennialte.ch'
+    location.host = 'redlib.catsarch.com'
     break
-  case 'jump.bdimg.com':
-  case 'jump2.bdimg.com':
-    location.host = 'tieba.baidu.com'
 }
