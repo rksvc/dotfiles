@@ -8,9 +8,9 @@ mp.msg = require "mp.msg"
 --- [List of Input Commands](https://mpv.io/manual/stable/#list-of-input-commands).
 ---
 --- By default, this will show something on the OSD (depending on the command), as
---- if it was used in `input.conf`. See
---- [Input Command Prefixes](https://mpv.io/manual/stable/#input-command-prefixes)
---- how to influence OSD usage per command.
+--- if it was used in `input.conf`. See [Input Command
+--- Prefixes](https://mpv.io/manual/stable/#input-command-prefixes) how to influence
+--- OSD usage per command.
 ---
 --- Returns `true` on success, or `nil, error` on error.
 function mp.command(string) end
@@ -46,9 +46,9 @@ function mp.commandv(arg1, arg2, ...) end
 --- If the table contains string keys, it's interpreted as command with named
 --- arguments. This requires at least an entry with the key `name` to be present,
 --- which must be a string, and contains the command name. The special entry
---- `_flags` is optional, and if present, must be an array of
---- [Input Command Prefixes](https://mpv.io/manual/stable/#input-command-prefixes)
---- to apply. All other entries are interpreted as arguments.
+--- `_flags` is optional, and if present, must be an array of [Input Command
+--- Prefixes](https://mpv.io/manual/stable/#input-command-prefixes) to apply. All
+--- other entries are interpreted as arguments.
 ---
 --- Returns a result table on success (usually empty), or `def, error` on error.
 --- `def` is the second parameter provided to the function, and is nil if it's
@@ -62,8 +62,10 @@ function mp.command_native(table, def) end
 ---
 --- - `success`: Always a Boolean and is true if the command was successful,
 ---   otherwise false.
+---
 --- - `result`: The result value (can be nil) in case of success, nil otherwise (as
 ---   returned by `mp.command_native()`).
+---
 --- - `error`: The error string in case of an error, nil otherwise.
 ---
 --- Returns a table with undefined contents, which can be used as argument for
@@ -92,8 +94,8 @@ function mp.del_property(name) end
 --- Return the value of the given property as string. These are the same properties
 --- as used in input.conf. See
 --- [Properties](https://mpv.io/manual/stable/#properties) for a list of properties.
---- The returned string is formatted similar to `${=name}` (see
---- [Property Expansion](https://mpv.io/manual/stable/#property-expansion)).
+--- The returned string is formatted similar to `${=name}` (see [Property
+--- Expansion](https://mpv.io/manual/stable/#property-expansion)).
 ---
 --- Returns the string on success, or `def, error` on error. `def` is the second
 --- parameter provided to the function, and is nil if it's missing.
@@ -218,16 +220,22 @@ function mp.get_time() end
 ---   - `event`: Set to one of the strings `down`, `repeat`, `up` or `press` (the
 ---     latter if key up/down/repeat can't be tracked), which indicates the key's
 ---     logical state.
+---
 ---   - `is_mouse`: Boolean: Whether the event was caused by a mouse button.
+---
 ---   - `canceled`: Boolean: Whether the event was canceled. Not all types of
 ---     cancellations set this flag.
+---
 ---   - `key_name`: The name of they key that triggered this, or `nil` if invoked
 ---     artificially. If the key name is unknown, it's an empty string.
+---
 ---   - `key_text`: Text if triggered by a text key, otherwise `nil`. See
 ---     description of `script-binding` command for details (this field is
 ---     equivalent to the 5th argument).
+---
 ---   - `scale`: The scale of the key, such as the ones produced by `WHEEL_*` keys.
 ---     The scale is 1 if the key is nonscalable.
+---
 ---   - `arg`: User-provided string in the `arg` argument in the `script-binding`
 ---     command if the key binding is invoked by that command.
 ---
@@ -295,8 +303,8 @@ function mp.remove_key_binding(name) end
 ---
 --- Returns true if such an event exists, false otherwise.
 ---
---- See [Events](https://mpv.io/manual/stable/#events) and
---- [List of events](https://mpv.io/manual/stable/#list-of-events) for details.
+--- See [Events](https://mpv.io/manual/stable/#events) and [List of
+--- events](https://mpv.io/manual/stable/#list-of-events) for details.
 function mp.register_event(name, fn) end
 
 --- Undo `mp.register_event(..., fn)`. This removes all event handlers that are
@@ -358,20 +366,26 @@ function mp.add_timeout(seconds, fn, disabled) end
 --- - `stop()`: Disable the timer. Does nothing if the timer is already disabled.
 ---   This will remember the current elapsed time when stopping, so that `resume()`
 ---   essentially unpauses the timer.
+---
 --- - `kill()`: Disable the timer. Resets the elapsed time. `resume()` will restart
 ---   the timer.
+---
 --- - `resume()`: Restart the timer. If the timer was disabled with `stop()`, this
 ---   will resume at the time it was stopped. If the timer was disabled with
 ---   `kill()`, or if it's a previously fired one-shot timer (added with
 ---   `add_timeout()`), this starts the timer from the beginning, using the
 ---   initially configured timeout.
+---
 --- - `is_enabled()`: Whether the timer is currently enabled or was previously
 ---   disabled (e.g. by `stop()` or `kill()`).
+---
 --- - `timeout` (RW): This field contains the current timeout period. This value is
 ---   not updated as time progresses. It's only used to calculate when the timer
----   should fire next when the timer expires. If you write this, you can call
----   `t:kill() ; t:resume()` to reset the current timeout to the new one.
----   (`t:stop()` won't use the new timeout.)
+---   should fire next when the timer expires.
+---
+---   If you write this, you can call `t:kill() ; t:resume()` to reset the current
+---   timeout to the new one. (`t:stop()` won't use the new timeout.)
+---
 --- - `oneshot` (RW): Whether the timer is periodic (`false`) or fires just once
 ---   (`true`). This value is used when the timer expires (but before the timer
 ---   callback function fn is run).
@@ -408,9 +422,9 @@ function mp.get_opt(key) end
 --- Example: The script `/path/to/foo-script.lua` becomes `foo_script`.
 function mp.get_script_name() end
 
---- Return the directory if this is a script packaged as directory (see
---- [Script location](https://mpv.io/manual/stable/#script-location) for a
---- description). Return nothing if this is a single file script.
+--- Return the directory if this is a script packaged as directory (see [Script
+--- location](https://mpv.io/manual/stable/#script-location) for a description).
+--- Return nothing if this is a single file script.
 function mp.get_script_directory() end
 
 --- Show an OSD message on the screen. `duration` is in seconds, and is optional
@@ -484,6 +498,7 @@ function mp.unregister_script_message(name) end
 --- - `update()`: Commit the OSD overlay to the screen, or in other words, run the
 ---   `osd-overlay` command with the current fields of the overlay table. Returns
 ---   the result of the `osd-overlay` command itself.
+---
 --- - `remove()`: Remove the overlay from the screen. A `update()` call will add it
 ---   again.
 ---
@@ -534,6 +549,7 @@ function exit() end
 --- - `defer()`: Returning from the hook function should not automatically continue
 ---   the hook. Instead, the API user wants to call `hook:cont()` on its own at a
 ---   later point in time (before or after the function has returned).
+---
 --- - `cont()`: Continue the hook. Doesn't need to be called unless `defer()` was
 ---   called.
 ---

@@ -16,10 +16,13 @@ function utils.getcwd() end
 --- - `files`: List regular files only. This excludes directories, special files
 ---   (like UNIX device files or FIFOs), and dead symlinks. It includes UNIX
 ---   symlinks to regular files.
+---
 --- - `dirs`: List directories only, or symlinks to directories. `.` and `..` are
 ---   not included.
+---
 --- - `normal`: Include the results of both `files` and `dirs`. (This is the
 ---   default.)
+---
 --- - `all`: List all entries, even device files, dead symlinks, FIFOs, and the `.`
 ---   and `..` entries.
 ---
@@ -32,11 +35,17 @@ function utils.readdir(path, filter) end
 ---
 --- - `mode`: protection bits (on Windows, always 755 (octal) for directories and
 ---   644 (octal) for files)
+---
 --- - `size`: size in bytes
+---
 --- - `atime`: time of last access
+---
 --- - `mtime`: time of last modification
+---
 --- - `ctime`: time of last metadata change
+---
 --- - `is_file`: Whether `path` is a regular file (boolean)
+---
 --- - `is_dir`: Whether `path` is a directory (boolean)
 ---
 --- `mode` and `size` are integers. Timestamps (`atime`, `mtime` and `ctime`) are
