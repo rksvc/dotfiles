@@ -8,7 +8,7 @@ Function Cleanup {
 Function Backup {
     $Archive = "$HOME\ecloud\backup.zip"
     Remove-Item $Archive
-    7z a -ssw -xr!cache -xr!watch_later -xr!archwsl -xr!sublime-text $Archive $HOME\scoop\persist\* $env:AppData\rsslab\rsslab.db
+    7z a -ssw -xr!cache -xr!watch_later -xr!archwsl $Archive $HOME\scoop\persist\* $env:AppData\rsslab\rsslab.db
 }
 
 Function Awake {
