@@ -37,15 +37,11 @@ mp.register_event('file-loaded', function(event)
         return mp.msg.error(error)
     end
     if result.status < 0 then
-        if result.error_string then
+        if #result.error_string > 0 then
             return mp.msg.error(result.error_string)
         end
         local stderr = result.stderr:gsub('^%s*(.-)%s*$', '%1')
-        if stderr then
-            return mp.msg.error(stderr)
-        else
-            return mp.msg.error('unknown error')
-        end
+        return mp.msg.error(#stderr > 0 and stderr or 'unknown error')
     end
 
     local json, error = utils.parse_json(result.stdout)
