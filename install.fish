@@ -18,7 +18,6 @@ for arg in $argv
         case go
             go env -w GOPATH="$HOME/.go"
             go env -w GOMODCACHE="$HOME/.go/pkg/mod"
-            go env -w GO111MODULE=on
             go env -w GOPROXY=https://goproxy.cn,direct
         case '*'
             echo unknown target: $arg
