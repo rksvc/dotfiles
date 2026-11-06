@@ -44,11 +44,15 @@ function mp.commandv(arg1, arg2, ...) end
 --- (but can be a native type instead of a string).
 ---
 --- If the table contains string keys, it's interpreted as command with named
---- arguments. This requires at least an entry with the key `name` to be present,
---- which must be a string, and contains the command name. The special entry
---- `_flags` is optional, and if present, must be an array of [Input Command
+--- arguments. This requires at least an entry with the key `_name` to be present,
+--- which must be a string, and contains the command name. For compatibility, if the
+--- key `_name` does not exist, then the entry with the key `name` will be used
+--- instead. The special entry `_flags` is optional, and if present, must be an
+--- array of [Input Command
 --- Prefixes](https://mpv.io/manual/stable/#input-command-prefixes) to apply. All
---- other entries are interpreted as arguments.
+--- other entries are interpreted as arguments. Note that some commands have
+--- arguments named `name`, and can only be used if the command name is specified
+--- with key `_name` instead of `name`.
 ---
 --- Returns a result table on success (usually empty), or `def, error` on error.
 --- `def` is the second parameter provided to the function, and is nil if it's
@@ -293,7 +297,7 @@ function mp.remove_key_binding(name) end
 --- the function fn is a Lua function value.
 ---
 --- Some events have associated data. This is put into a Lua table and passed as
---- argument to fn. The Lua table by default contains a `name` field, which is a
+--- argument to fn. The Lua table by default contains a `event` field, which is a
 --- string containing the event name. If the event has an error associated, the
 --- `error` field is set to a string describing the error, on success it's not set.
 ---

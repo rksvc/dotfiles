@@ -72,7 +72,7 @@ function utils.join_path(p1, p2) end
 --- - rename `cancellable` field to `playback_only`
 --- - rename `max_size` to `capture_size`
 --- - set `capture_stdout` field to `true` if unset
---- - set `name` field to `subprocess`
+--- - set `_name` field to `subprocess`
 --- - call `mp.command_native(copied_t)`
 --- - if the command failed, create a dummy result table
 --- - copy `error_string` to `error` field if the string is non-empty
@@ -125,7 +125,11 @@ function utils.parse_json(str, trail) end
 ---
 --- The argument value uses similar conventions as `mp.set_property_native()` to
 --- distinguish empty objects and arrays.
-function utils.format_json(v) end
+---
+--- If the `pretty` parameter is `true` (or any value equal to `true`), then the
+--- output string is formatted and indented for human consumption.
+---@param pretty?
+function utils.format_json(v, pretty) end
 
 --- Turn the given value into a string. Formats tables and their contents. This
 --- doesn't do anything special; it is only needed because Lua is terrible.

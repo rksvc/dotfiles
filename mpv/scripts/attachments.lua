@@ -28,7 +28,7 @@ mp.register_event('file-loaded', function(event)
         path,
     }
     local result, error = mp.command_native({
-        name = 'subprocess',
+        _name = 'subprocess',
         args = args,
         capture_stdout = true,
         capture_stderr = true,
